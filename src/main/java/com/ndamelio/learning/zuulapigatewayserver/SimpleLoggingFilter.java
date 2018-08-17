@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class SimpleLoggingFilter extends ZuulFilter {
 
-    private static Logger LOG = LoggerFactory.getLogger(SimpleLoggingFilter.class);
+    private static Logger log = LoggerFactory.getLogger(SimpleLoggingFilter.class);
 
     @Override
     public String filterType() {
@@ -32,7 +32,9 @@ public class SimpleLoggingFilter extends ZuulFilter {
     public Object run() {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest httpRequest = context.getRequest();
-        LOG.info("Request Method: {} \n URL: {}", httpRequest.getMethod(), httpRequest.getRequestURL().toString());
+
+        log.info(String.format("Request Method : %s \n URL:  %s", httpRequest.getMethod(), httpRequest.getRequestURL().toString()));
+
         return null;
     }
 }
